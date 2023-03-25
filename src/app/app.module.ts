@@ -47,6 +47,10 @@ import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pa
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { HttpInterceptorService } from "./services/http-interceptor.service";
+import { TestamaniComponent } from './views/testamani/testamani.component';
 
 @NgModule({
   declarations: [
@@ -84,9 +88,16 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     IndexComponent,
     LandingComponent,
     ProfileComponent,
+    TestamaniComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule,HttpClientModule,FormsModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

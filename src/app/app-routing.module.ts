@@ -19,6 +19,7 @@ import { RegisterComponent } from "./views/auth/register/register.component";
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
+import { TestamaniComponent } from "./views/testamani/testamani.component";
 
 const routes: Routes = [
   // admin views
@@ -40,12 +41,14 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
+      {path: 'logout', component: LoginComponent},
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
   // no layout views
   { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
+  {path: 'testamani', component: TestamaniComponent},
   { path: "", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
