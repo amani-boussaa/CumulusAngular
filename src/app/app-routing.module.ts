@@ -1,9 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { GuardadminGuard } from "./guards/guardadmin.guard";
 
 // layouts
 import { AdminComponent } from "./layouts/admin/admin.component";
 import { AuthComponent } from "./layouts/auth/auth.component";
+import { AmaniUserUpdateComponent } from "./views/admin/amani-user-update/amani-user-update.component";
+import { AmaniUsersAllComponent } from "./views/admin/amani-users-all/amani-users-all.component";
 
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
@@ -26,11 +29,14 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
+    canActivate:[GuardadminGuard],
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "settings", component: SettingsComponent },
       { path: "tables", component: TablesComponent },
       { path: "maps", component: MapsComponent },
+      { path: "users", component: AmaniUsersAllComponent },
+      { path: "userupdate/:id", component: AmaniUserUpdateComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

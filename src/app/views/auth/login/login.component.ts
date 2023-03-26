@@ -15,11 +15,17 @@ export class LoginComponent  {
   invalidLogin = false;
   loginSuccess = false;
   role: string
+  url:any
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthService
-  ) {}
+    private authenticationService: AuthService,
+    private arouter:ActivatedRoute
+  ) {
+    this.url=this.arouter.snapshot.queryParams['returnUrl'] || 'admin/dashboard'
+
+  }
 
   ngOnInit(): void {}
 
@@ -28,7 +34,7 @@ export class LoginComponent  {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
-      this.router.navigate(['admin/dashboard']);
+      this.router.navigate([this.url]);
     }, (error: any) => {
       console.error('Login failed', error);
       this.invalidLogin = true;

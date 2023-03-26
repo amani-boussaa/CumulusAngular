@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: 'http://localhost:8081/CUMULUS/api';
- USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
+
+
+//  USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
  ACCESS_TOKEN = 'accessToken';
+
+ helper=new JwtHelperService()
+ role=''
+ ROLE_ADMIN = "ROLE_ADMIN"
+ ROLE_TEACHER = "ROLE_TEACHER"
+ ROLE_STUDENT = "ROLE_STUDENT"
 
  public usernameOrEmail: String;
  public password: String;
@@ -26,6 +34,8 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8081/CUMULUS/api/v1/auth/login', credentials).pipe(map((res) => {
            this.usernameOrEmail = usernameOrEmail;
            this.password = password;
+           //new ads
+          //  this.Profil.role
            this.registerSuccessfulLogin(usernameOrEmail, password,res.accessToken);
          }));
      
@@ -39,26 +49,45 @@ export class AuthService {
  }
 
  registerSuccessfulLogin(usernameOrEmail, password,accessToken) {
-   sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, usernameOrEmail)
-   sessionStorage.setItem(this.ACCESS_TOKEN, accessToken)
+  //  localStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, usernameOrEmail)
+   localStorage.setItem(this.ACCESS_TOKEN, accessToken)
  }
 
  logout() {
-   sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-   sessionStorage.removeItem(this.ACCESS_TOKEN);
+  //  localStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+   localStorage.removeItem(this.ACCESS_TOKEN);
    this.usernameOrEmail = null;
    this.password = null;
  }
 
- isUserLoggedIn() {
-   let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-   if (user === null) return false
-   return true
+ isUserLoggedIn(role_login="") {
+  //  let user = localStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
+  //  if (user === null) return false
+  //  return true
+    let token:any=localStorage.getItem(this.ACCESS_TOKEN)
+    if(!token){
+     return false
+    }
+    let decodeToken=this.helper.decodeToken(token)
+   
+   
+    // if(decodeToken.role!==this.ROLE_ADMIN){
+      if(decodeToken.role!==role_login){
+      return false
+    }
+
+    if(this.helper.isTokenExpired(token)){
+      return false
+    }
+
+    return true
+ 
  }
 
  getLoggedInusernameOrEmail() {
-   let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-   if (user === null) return ''
-   return user
+  let token=localStorage.getItem(this.ACCESS_TOKEN)
+   let decodeToken= this.helper.decodeToken(token)
+   if (token === null) return ''
+    return decodeToken.name
  }
 }

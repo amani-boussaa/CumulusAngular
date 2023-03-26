@@ -51,6 +51,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { HttpInterceptorService } from "./services/http-interceptor.service";
 import { TestamaniComponent } from './views/testamani/testamani.component';
+import { AmaniUsersAllComponent } from './views/admin/amani-users-all/amani-users-all.component';
+import { CardTableAmaniComponent } from './components/cards/card-table-amani/card-table-amani.component';
+import { AmaniUserUpdateComponent } from './views/admin/amani-user-update/amani-user-update.component';
+import { CardSettingsAmaniComponent } from './components/cards/card-settings-amani/card-settings-amani.component';
+import { CardProfileAmaniComponent } from './components/cards/card-profile-amani/card-profile-amani.component';
 
 @NgModule({
   declarations: [
@@ -89,14 +94,19 @@ import { TestamaniComponent } from './views/testamani/testamani.component';
     LandingComponent,
     ProfileComponent,
     TestamaniComponent,
+    AmaniUsersAllComponent,
+    CardTableAmaniComponent,
+    AmaniUserUpdateComponent,
+    CardSettingsAmaniComponent,
+    CardProfileAmaniComponent,
   ],
   imports: [BrowserModule, AppRoutingModule,HttpClientModule,FormsModule],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpInterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent],
 })

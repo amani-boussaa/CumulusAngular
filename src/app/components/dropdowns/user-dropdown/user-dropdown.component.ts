@@ -16,9 +16,9 @@ export class UserDropdownComponent implements AfterViewInit,OnInit {
     private authenticationService: AuthService) { }
 
     ngOnInit() {
-      this.isLoggedIn = this.authenticationService.isUserLoggedIn();
+      this.isLoggedIn = this.authenticationService.isUserLoggedIn(this.authenticationService.ROLE_ADMIN);
       this.usernameOrEmail = this.authenticationService.getLoggedInusernameOrEmail();
-      console.log('menu ->' + this.isLoggedIn);
+      console.log('isLoggedIn ->' , this.isLoggedIn);
     }
     handleLogout() {
       this.authenticationService.logout();
