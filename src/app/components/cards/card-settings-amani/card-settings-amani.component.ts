@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card-settings-amani',
@@ -6,9 +6,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./card-settings-amani.component.css']
 })
 export class CardSettingsAmaniComponent implements OnInit {
-  @Input("dataObject") dataObject
-  @Input("dataKey") dataKey
-  constructor() { }
+  @Input() entity: any;
+  @Input("attributesP") attributes: any;
+  @Output() updateEntity = new EventEmitter<any>();
+
+ 
+
+  onSubmit() {
+    if (this.validateForm()) {
+      this.updateEntity.emit(this.entity);
+    }
+  }
+
+  validateForm() {
+    // Add form validation logic here
+    return true;
+  }
 
   ngOnInit(): void {
     

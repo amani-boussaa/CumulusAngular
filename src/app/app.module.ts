@@ -56,6 +56,8 @@ import { CardTableAmaniComponent } from './components/cards/card-table-amani/car
 import { AmaniUserUpdateComponent } from './views/admin/amani-user-update/amani-user-update.component';
 import { CardSettingsAmaniComponent } from './components/cards/card-settings-amani/card-settings-amani.component';
 import { CardProfileAmaniComponent } from './components/cards/card-profile-amani/card-profile-amani.component';
+import { ResetpasswordComponent } from './views/auth/resetpassword/resetpassword.component';
+import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { CardProfileAmaniComponent } from './components/cards/card-profile-amani
     AmaniUserUpdateComponent,
     CardSettingsAmaniComponent,
     CardProfileAmaniComponent,
+    ResetpasswordComponent,
+    ForgotpasswordComponent,
   ],
   imports: [BrowserModule, AppRoutingModule,HttpClientModule,FormsModule],
   providers: [

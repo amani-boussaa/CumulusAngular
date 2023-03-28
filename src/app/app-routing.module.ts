@@ -13,10 +13,12 @@ import { DashboardComponent } from "./views/admin/dashboard/dashboard.component"
 import { MapsComponent } from "./views/admin/maps/maps.component";
 import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
+import { ForgotpasswordComponent } from "./views/auth/forgotpassword/forgotpassword.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
 import { RegisterComponent } from "./views/auth/register/register.component";
+import { ResetpasswordComponent } from "./views/auth/resetpassword/resetpassword.component";
 
 // no layouts views
 import { IndexComponent } from "./views/index/index.component";
@@ -48,6 +50,8 @@ const routes: Routes = [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
       {path: 'logout', component: LoginComponent},
+      {path: 'forgot-password', component: ForgotpasswordComponent},
+      {path: 'reset-password/:token', component: ResetpasswordComponent},
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },

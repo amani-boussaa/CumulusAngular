@@ -1,6 +1,6 @@
 <div class="flex flex-wrap">
     <div class="w-full lg:w-8/12 px-4">
-      <app-card-settings-amani [dataObject]="dataObject" [dataKey]="dataKey"></app-card-settings-amani>
+      <app-card-settings-amani [entity]="entity" (updateEntity)="onUpdateEntity($event)" [attributesP]="attributes"></app-card-settings-amani>
     </div>
     <div class="w-full lg:w-4/12 px-4">
       <app-card-profile-amani></app-card-profile-amani>
