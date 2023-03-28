@@ -34,6 +34,9 @@ export class LoginComponent  {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
+      if (this.authenticationService.isUserLoggedIn(this.authenticationService.ROLE_STUDENT)) {
+        this.url=this.arouter.snapshot.queryParams['returnUrl'] || 'profileamani'
+      }
       this.router.navigate([this.url]);
     }, (error: any) => {
       console.error('Login failed', error);

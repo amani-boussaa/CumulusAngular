@@ -5,25 +5,23 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-
-  token:any=localStorage.getItem('accessToken')
-   httpOptions = {
+  imageData:any
+  token: any = localStorage.getItem('accessToken')
+  httpOptions = {
     headers: new HttpHeaders({
       'Authorization': 'Bearer ' + this.token
     })
   };
 
 
-  headerall=new HttpHeaders()
-  .set('authorization',this.token)
-  constructor(private http:HttpClient) { }
+
+  constructor(private http: HttpClient) { }
 
 
 
-  getAllusers(){
-    console.log("oo")
+  getAllusers() {
     // return this.http.get(`${environment.urlBackend}`+'api2/v1/users/',{headers:this.headerall,params:this.params})
-    return this.http.get(`${environment.urlBackend}`+'api2/v1/users',this.httpOptions)
+    return this.http.get(`${environment.urlBackend}` + 'api2/v1/users', this.httpOptions)
   }
 
   // adduser(profile:any){
@@ -32,21 +30,45 @@ export class UserService {
 
   // }
 
-  deleteuser(id:any){
-    return this.http.delete(environment.urlBackend+'api2/v1/users/removeUser/'+id,this.httpOptions)
+  deleteuser(id: any) {
+    return this.http.delete(environment.urlBackend + 'api2/v1/users/removeUser/' + id, this.httpOptions)
 
   }
 
 
-  updateuser(id:string,newprofile:any){
-
-    return this.http.patch(environment.urlBackend+'api2/v1/users/updateUser/'+id,newprofile,this.httpOptions)
+  updateuser(id: string, newprofile: any) {
+    return this.http.put(environment.urlBackend + 'api2/v1/users/updateUser/' + id, newprofile, this.httpOptions)
 
   }
 
 
-  getOneuser(id:any){
-    
-    return this.http.get(environment.urlBackend+'api2/v1/users/retrieveUser/'+id,this.httpOptions)
+  getOneuser(id: any) {
+
+    return this.http.get(environment.urlBackend + 'api2/v1/users/retrieveUser/' + id, this.httpOptions)
   }
+
+  uploadImage(id: number, file: File) {
+    const url = `${environment.urlBackend}api2/v1/users/${id}/image`;
+
+    const formData = new FormData();
+    formData.append('file', file);    
+
+    return this.http.post(url, formData, this.httpOptions);
+  }
+
+  // getImageData(id: number) {
+  //   const url = `${environment.urlBackend}api2/v1/users/getblobimage/${id}`;
+  //   this.http.get(url, { responseType: 'blob' }).subscribe(
+  //     (data: Blob) => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         this.imageData = reader.result;
+  //       };
+  //       reader.readAsDataURL(data);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
 }

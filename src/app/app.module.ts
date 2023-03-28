@@ -58,6 +58,7 @@ import { CardSettingsAmaniComponent } from './components/cards/card-settings-ama
 import { CardProfileAmaniComponent } from './components/cards/card-profile-amani/card-profile-amani.component';
 import { ResetpasswordComponent } from './views/auth/resetpassword/resetpassword.component';
 import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassword.component';
+import { ProfileamaniComponent } from './views/profileamani/profileamani.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { ForgotpasswordComponent } from './views/auth/forgotpassword/forgotpassw
     CardProfileAmaniComponent,
     ResetpasswordComponent,
     ForgotpasswordComponent,
+    ProfileamaniComponent,
   ],
   imports: [BrowserModule, AppRoutingModule,HttpClientModule,FormsModule],
   providers: [

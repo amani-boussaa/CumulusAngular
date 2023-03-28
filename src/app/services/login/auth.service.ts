@@ -60,7 +60,7 @@ export class AuthService {
     this.password = null;
   }
 
-  isUserLoggedIn(role_login = "") {
+  isUserLoggedIn(role_login = this.ROLE_ADMIN) {
     //  let user = localStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
     //  if (user === null) return false
     //  return true
@@ -89,6 +89,12 @@ export class AuthService {
     let decodeToken = this.helper.decodeToken(token)
     if (token === null) return ''
     return decodeToken.name
+  }
+  getLoggedInId() {
+    let token = localStorage.getItem(this.ACCESS_TOKEN)
+    let decodeToken = this.helper.decodeToken(token)
+    if (token === null) return ''
+    return decodeToken.id
   }
 
   sendPasswordResetEmail(email: string) {

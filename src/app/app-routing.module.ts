@@ -24,6 +24,7 @@ import { ResetpasswordComponent } from "./views/auth/resetpassword/resetpassword
 import { IndexComponent } from "./views/index/index.component";
 import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
+import { ProfileamaniComponent } from "./views/profileamani/profileamani.component";
 import { TestamaniComponent } from "./views/testamani/testamani.component";
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
   },
   // no layout views
   { path: "profile", component: ProfileComponent },
+  { path: "profileamani", component: ProfileamaniComponent },
   { path: "landing", component: LandingComponent },
   {path: 'testamani', component: TestamaniComponent},
   { path: "", component: IndexComponent },
