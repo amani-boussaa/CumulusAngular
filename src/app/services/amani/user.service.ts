@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,8 @@ export class UserService {
 
 
   getOneuser(id: any) {
-
+console.log("id",id)
+console.log("getOneuser",id)
     return this.http.get(environment.urlBackend + 'api2/v1/users/retrieveUser/' + id, this.httpOptions)
   }
 
@@ -55,7 +57,13 @@ export class UserService {
 
     return this.http.post(url, formData, this.httpOptions);
   }
+  getImage(id: number): Observable<Blob> {
+    const url = `${environment.urlBackend}api2/v1/users/getblobimage/${id}`;
+    // console.log(url)
+    // return this.http.get<Blob>(url, { responseType: 'blob' });
+    return this.http.get(url, { responseType: 'blob' });
 
+  }
   // getImageData(id: number) {
   //   const url = `${environment.urlBackend}api2/v1/users/getblobimage/${id}`;
   //   this.http.get(url, { responseType: 'blob' }).subscribe(

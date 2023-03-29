@@ -94,6 +94,7 @@ export class AuthService {
     let token = localStorage.getItem(this.ACCESS_TOKEN)
     let decodeToken = this.helper.decodeToken(token)
     if (token === null) return ''
+    // console.log("decodeToken.id",decodeToken.id)
     return decodeToken.id
   }
 
