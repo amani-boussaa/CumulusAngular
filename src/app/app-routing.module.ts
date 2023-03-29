@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { GuardadminGuard } from "./guards/guardadmin.guard";
+import { GuardadminteacherGuard } from "./guards/guardadminteacher.guard";
+import { GuardstudentGuard } from "./guards/guardstudent.guard";
 
 // layouts
 import { AdminComponent } from "./layouts/admin/admin.component";
@@ -33,7 +35,7 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    canActivate:[GuardadminGuard],
+    canActivate:[GuardadminteacherGuard],
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "settings", component: SettingsComponent },
@@ -59,7 +61,7 @@ const routes: Routes = [
   },
   // no layout views
   { path: "profile", component: ProfileComponent },
-  { path: "profileamani", component: ProfileamaniComponent },
+  { path: "profileamani", component: ProfileamaniComponent,canActivate:[GuardstudentGuard]},
   { path: "profileamanidetail", component: ProfileamanidetailComponent },
   { path: "landing", component: LandingComponent },
   {path: 'testamani', component: TestamaniComponent},
